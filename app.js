@@ -62,7 +62,7 @@ var App = function () {
 	
     return {
     	init: function(){
-    		render(jsonData2, 0);
+    		render(jsonData3, 0);
     	}
     };
 
