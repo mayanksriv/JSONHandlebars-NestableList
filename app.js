@@ -1,8 +1,4 @@
 var App = function () {
-
-	var jsonData1 = [{"id":1},{"id":2},{"id":3}];
-	
-	var jsonData2 = [{"id":1},{"id":2},{"id":3,"children":[{"id":4},{"id":5},{"id":6}]}];
 	
 	var jsonData3 = [{"id":1},{"id":2,"children":[{"id":3,"children":[{"id":9, "children":[{"id":10}]}]}]},{"id":4,"children":[{"id":5},{"id":6},{"id":7, "children": [{"id":11}, {"id":12}]}]}];
 	
@@ -40,7 +36,7 @@ var App = function () {
 			$("#here").append(html);
 		}
 		else{
-			var selector = "#" +id;
+			var selector = "#ul" +id;
 			$(selector).append(html);
 		}
 	};
@@ -55,15 +51,23 @@ var App = function () {
 			$("#here").append(html);
 		}
 		else{
-			var selector = "#" +id;
+			var selector = "#ul" +id;
 			$(selector).append(html);
 		}
 	};
 	
-    return {
-    	init: function(){
-    		render(jsonData3, 0);
-    	}
-    };
+
+	    return {
+		init : function(jsonData) {
+			render(jsonData, 0);
+			$("li").click(
+					function(e) {
+						if ($("#" + e.target.nextElementSibling.id).prop(
+								'tagName') == 'UL') {
+							$("#" + e.target.nextElementSibling.id).toggle();
+						}
+					});
+		}
+	};
 
 }();
